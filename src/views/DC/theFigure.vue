@@ -2,7 +2,7 @@
 import { useStore } from '@/stores/index.ts'
 import { ref } from 'vue'
 import html2canvas from 'html2canvas';
-import DC from "@/views/DC.vue";
+import DC from "@/views/DC/DC.vue";
 const store = useStore()
 const timestamp = new Date().getTime();
 const imgRef = ref();

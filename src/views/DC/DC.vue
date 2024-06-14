@@ -1,16 +1,16 @@
 <script setup>
 import { onMounted, defineProps, ref, watch } from "vue";
 import { useStore } from "@/stores/index.ts";
-import huangtu from "@/views/DCitem/huangTu.vue";
-import lishi from "@/views/DCitem/liShi.vue";
-import fenshayan from "@/views/DCitem/fenshaYan.vue";
-import niyan from "@/views/DCitem/niYan.vue";
-import xishayan from "@/views/DCitem/xishaYan.vue";
-import tanzhiniyan from "@/views/DCitem/tanzhiniYan.vue";
-import mei from "@/views/DCitem/meiCeng.vue";
-import shazhiniyan from "@/views/DCitem/nizhishaYan.vue";
-import cushayan from "@/views/DCitem/cushaYan.vue";
-import zhongshayan from "@/views/DCitem/zhongshaYan.vue";
+import huangtu from "@/views/DC/DCitem/huangTu.vue";
+import lishi from "@/views/DC/DCitem/liShi.vue";
+import fenshayan from "@/views/DC/DCitem/fenshaYan.vue";
+import niyan from "@/views/DC/DCitem/niYan.vue";
+import xishayan from "@/views/DC/DCitem/xishaYan.vue";
+import tanzhiniyan from "@/views/DC/DCitem/tanzhiniYan.vue";
+import mei from "@/views/DC/DCitem/meiCeng.vue";
+import shazhiniyan from "@/views/DC/DCitem/nizhishaYan.vue";
+import cushayan from "@/views/DC/DCitem/cushaYan.vue";
+import zhongshayan from "@/views/DC/DCitem/zhongshaYan.vue";
 const props = defineProps(["DCitem"]);
 const store = useStore()
 const CDdata = ref({

@@ -27,7 +27,7 @@ importers:
         specifier: ^0.2.4
         version: 0.2.4
       vue:
-        specifier: ^3.4.21
+        specifier: ^3.4.27
         version: 3.4.27(typescript@5.4.5)
       vue-router:
         specifier: ^4.3.0
