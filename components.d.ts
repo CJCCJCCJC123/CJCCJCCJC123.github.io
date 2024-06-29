@@ -17,7 +17,6 @@ declare module 'vue' {
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
-    ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElPopconfirm: typeof import('element-plus/es')['ElPopconfirm']
@@ -30,7 +29,6 @@ declare module 'vue' {
     MySvg: typeof import('./src/components/mySvg.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Svg: typeof import('./src/components/Svg.vue')['default']
     ToolItems: typeof import('./src/components/toolItems.vue')['default']
   }
   export interface ComponentCustomProperties {
