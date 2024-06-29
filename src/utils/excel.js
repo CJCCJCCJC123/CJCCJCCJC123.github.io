@@ -1,9 +1,11 @@
 // 导入excelfile和一个tableData，excel会编程tableData的数据
 import XLSX from 'xlsx'
-const getxlsx = (file,tableData) => {
+import { useBaseStore} from '@/stores/yali/base.ts'
+const baseStore = useBaseStore()
+const getxlsx = (file) => {
     file2XLSX(file).then((res) => {
         console.log(res)
-        tableData.value = res[1].sheet
+        baseStore.testData = res[0].sheet
     })
     return false
 }

@@ -103,7 +103,7 @@ const getEch = () => {
         </el-card>
     </div>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 .echarts {
     width: 100%;
     height: 400px;
