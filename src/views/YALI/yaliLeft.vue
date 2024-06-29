@@ -39,7 +39,6 @@ const diameterSel = ref('')
 const isConfirm = ref(false)
 const closed = () => {
     if (!isConfirm.value) {
-
         distanceSel.value = ''
         diameterSel.value = ''
     }

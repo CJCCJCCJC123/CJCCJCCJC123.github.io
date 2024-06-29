@@ -71,7 +71,6 @@ const Qt = (P1, P2, t) => {
             right: 20,
             feature: {
                 dataZoom: { show: true },
-
                 dataView: { readOnly: false },
                 magicType: { type: ['line', 'bar'] },
                 saveAsImage: {}

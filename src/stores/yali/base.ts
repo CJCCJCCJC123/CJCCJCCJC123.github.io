@@ -6,6 +6,6 @@ export const useBaseStore = defineStore('main', () => {
     })
     return {
         testData,
-        parameter 
+        parameter
     }
 })
