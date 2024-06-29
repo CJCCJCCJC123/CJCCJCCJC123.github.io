@@ -16,7 +16,7 @@
         <RouterLink to="/yali" style="text-decoration: none;">
           <div class="ele" style="width: 400px;height: 450px;">
             <p class="text">双压力计抽水试验</p>
-            <img ref="imgRef" class="img" src="../assets/images/yali.png" />
+            <img ref="imgRef" class="img" src="../assets/images/yalis.png" />
           </div>
         </RouterLink>
       </div>
