@@ -87,7 +87,7 @@ const getBaseFig = () => {
                 </el-upload>
             </li>
             <li>
-                <el-button size="large" style="font-size: large;" @click="getBaseFig">基础图标获取</el-button>
+                <el-button size="large" style="font-size: large;" @click="getBaseFig">基础图表获取</el-button>
             </li>
         </ul>
     </div>

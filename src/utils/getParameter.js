@@ -86,7 +86,6 @@ const getParameter = (data)=> {
             return
     }
     // eslint-disable-next-line no-undef
-    ElMessage.success('选择成功')
     return parameter
 }
 export default getParameter

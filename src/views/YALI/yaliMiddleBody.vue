@@ -6,22 +6,21 @@ import { useBaseStore } from '@/stores/yali/base'
 import * as echarts from 'echarts'
 const baseStore = useBaseStore()
 const parameter = ref({})
-const echartBoxQt = ref()
-const echartBoxSt = ref()
-const echartBoxQS = ref()
-const echartBoxqS = ref()
+//const echartBoxQt = ref()
+//const echartBoxSt = ref()
+//const echartBoxQS = ref()
+//const echartBoxqS = ref()
 const isloading = ref(false)
 onMounted(() => {
     bus.on('InstrumentData', (data) => {
         parameter.value = getParameter(data)
-        console.log(parameter.value)
     })
     bus.on('getBaseFig', () => {
+        parameter.value = getParameter(baseStore.parameter)
         getEcharts()
     })
     if (baseStore.testData.length > 0) {
         parameter.value = getParameter(baseStore.parameter)
-        console.log(parameter.value)
         getEcharts()
     }
 })
@@ -43,7 +42,11 @@ const Qt = (P1, P2, t) => {
     window.onresize = function () {
         myChart.resize();
     };
-    const myChart = echarts.init(echartBoxQt.value)
+
+    const myBox = document.getElementById('echartBoxQt')
+
+    const myChart = echarts.init(myBox)
+
     const deltaP = P1.map((item, index) => {
         return Math.sqrt(Math.abs(item - P2[index]))
     })
@@ -162,7 +165,10 @@ const St = (P1, P2, t) => {
     window.onresize = function () {
         myChart.resize();
     };
-    const myChart = echarts.init(echartBoxSt.value)
+
+    const myBox = document.getElementById('echartBoxSt')
+
+    const myChart = echarts.init(myBox)
     const deltaP = P1.map((item, index) => {
         return Math.sqrt(Math.abs(item - P2[index]))
     })
@@ -174,7 +180,7 @@ const St = (P1, P2, t) => {
     const S = V.map((item, index) => {
         return ((item ** 2) / 19.6) + (P1[index] + P2[index]) / 0.0098
     })
-    console.log(S)
+    baseStore.St = S.map((item, index) => [item, t[index], Q[index]])
     myChart.setOption({
         title: {
             text: 'S-t曲线图',
@@ -287,7 +293,8 @@ const QS = (P1, P2) => {
     window.onresize = function () {
         myChart.resize();
     };
-    const myChart = echarts.init(echartBoxQS.value)
+    const myBox = document.getElementById('echartBoxQS')
+    const myChart = echarts.init(myBox)
     const deltaP = P1.map((item, index) => {
         return Math.sqrt(Math.abs(item - P2[index]))
     })
@@ -392,10 +399,10 @@ defineExpose({
 </script>
 <template>
     <div class="body">
-        <div class="echarts" ref="echartBoxQt" v-loading="isloading"></div>
-        <div class="echarts" ref="echartBoxSt" v-loading="isloading"></div>
-        <div class="echarts" ref="echartBoxQS" v-loading="isloading"></div>
-        <div class="echarts" ref="echartBoxqS" v-loading="isloading"></div>
+        <div class="echarts" id="echartBoxQt" v-loading="isloading"></div>
+        <div class="echarts" id="echartBoxSt" v-loading="isloading"></div>
+        <div class="echarts" id="echartBoxQS" v-loading="isloading"></div>
+        <div class="echarts" id="echartBoxqS" v-loading="isloading"></div>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -408,7 +415,6 @@ defineExpose({
     flex-wrap: wrap;
 
     .echarts {
-        overflow: auto;
         //添加悬浮阴影
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 

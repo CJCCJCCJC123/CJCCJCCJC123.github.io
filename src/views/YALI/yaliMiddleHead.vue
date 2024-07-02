@@ -24,7 +24,7 @@ const out = () => {
 }
 const returnLast = () => {
     $emits('mig')
-    router.go(-1)
+    router.push('/yalis')
 }
 </script>
 <template>
