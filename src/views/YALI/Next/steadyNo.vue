@@ -10,15 +10,18 @@ const M = ref()
 const Q = ref()
 const St = baseStore.St
 const steadySt = ref([0, 0])
+const Qt = ref()
 const isPoint = ref(false)
 const ecahrtsData = ref([])
 const justifySteadyFlow = () => {
     steadySt.value = St.find((ele, index) => {
-        const arrSt = St.slice(index)
+        const arrSt = St.slice(index, index + 30)
         const arrStaverageQ = arrSt.map(ele => ele[2]).reduce((a, b) => a + b) / arrSt.length
         Q.value = arrStaverageQ.toFixed(2)
+        Qt.value = arrSt[29][1]
         return arrSt.map(ele => ele[2]).every(ele => Math.abs(ele - arrStaverageQ) < 2)
     })
+
 }
 //上传文件
 const beforeUpload = async (file) => {
@@ -389,9 +392,9 @@ function drag(obj) {
                     <template #context>
                         <p>流量：{{ Q }}m³/h</p>
                         <br>
-                        <p>时间：{{ steadySt[1] }}h</p>
+                        <p>时间：{{ steadySt[1] }}~{{ Qt }}h</p>
                         <br>
-                        <p>判断依据：稳定时刻降深收敛差距小于2m³/h（可以手动修改）</p>
+                        <p>判断依据：连续30个时间段流量变化小于1m³/h（可以手动修改）</p>
                         <br>
                     </template>
                 </myText>
