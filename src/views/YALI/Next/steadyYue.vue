@@ -4,9 +4,8 @@
 //3.导入Q
 import { onMounted, ref, watch } from 'vue'
 import { useBaseStore } from '@/stores/yali/base'
-import getxlsx1 from '@/utils/excel2'
+import getxlsx2 from '@/utils/excel2'
 import * as echarts from 'echarts'
-import { translate } from 'element-plus';
 const baseStore = useBaseStore()
 const M = ref()
 const Q = ref()
@@ -26,7 +25,7 @@ const justifySteadyFlow = () => {
 }
 //上传文件
 const beforeUpload = async (file) => {
-    rsData.value = await getxlsx1(file)
+    rsData.value = await getxlsx2(file)
     return false
 }
 
@@ -298,7 +297,9 @@ const getrs = () => {
         const pointInPixel = [params.offsetX, params.offsetY];
         if (rs.containPixel('grid', pointInPixel)) {
             let xIndex = rs.convertFromPixel({ seriesIndex: 0 }, [params.offsetX, params.offsetY]);// [点击的数字，数据索引]
-            console.log(xIndex)
+            if (isPoint.value) {
+                [r.value, s.value] = [...xIndex]
+            }
         }
     });
 
@@ -314,22 +315,29 @@ const ecClick = (e) => {
     }
 }
 watch(() => ecpoint.value, (newVal) => {
-    console.log(getBiaozhun(newVal.x, newVal.y))
+
+    if (isPoint.value) {
+        [k0rB.value, rB.value] = [...getBiaozhun(newVal.x, newVal.y)]
+    }
+
 })
 const x = ref(0)
 const y = ref(0)
 const dingzix = ref(0)
 const dingziy = ref(0)
+//设置参数
+const k0rB = ref()
+const rB = ref()
+const s = ref()
+const r = ref()
 onMounted(() => {
     getBiaozhun()
     //点点事件
     const ecahrtsBox = document.querySelector('.echarts')
     ecahrtsBox.addEventListener('mousemove', (e) => {
         if (isPoint.value) {
-
             dingzix.value = e.layerX
             dingziy.value = e.layerY
-
         }
     })
     //拖拽
@@ -467,7 +475,22 @@ function drag(obj) {
                 </div>
             </div>
             <div class="leftBottom">
-                <div style="font-size: 30px;font-weight: bolder;margin:10px 0;">计算结果</div>
+                <div style="font-size: 30px; font-weight: bolder; margin:10px 0;">参数选取</div>
+                <div style="display: flex;justify-content: space-between;font-size: 16px;">
+                    <p style="flex:3">K0(r/B):{{ k0rB?.toFixed(4) }}</p>
+                    <p style="flex:2">r/B:{{ rB?.toFixed(4) }}</p>
+                    <p style="flex:2">s:{{ s?.toFixed(4) }}</p>
+                    <p style="flex:2">r:{{ r?.toFixed(4) }}</p>
+                </div>
+            </div>
+            <div class="leftBottom">
+                <div style="font-size: 30px; font-weight: bolder; margin:10px 0;">计算结果</div>
+                <div style="display: flex;justify-content: space-between;font-size: 16px;">
+                    <p style="flex:1">T:{{ (k0rB * Q / (2 * Math.PI * s))?.toFixed(4) }}</p>
+                    <p style="flex:1">K:{{ (k0rB * Q / (2 * Math.PI * s * M))?.toFixed(4) }}</p>
+                    <p style="flex:1">B:{{ (r / rB)?.toFixed(4) }}</p>
+                    <p style="flex:1">&#963;:{{ ((k0rB * Q / (2 * Math.PI * s)) / (r / rB))?.toFixed(4) }}</p>
+                </div>
             </div>
         </div>
         <div class="middle">
@@ -479,8 +502,8 @@ function drag(obj) {
                     :style="{ top: dingziy, left: dingzix }">
                 </mySvg>
                 <!-- <div id="rs" :style="{ top: y + 'px', left: x + 'px' }"></div> -->
-                <div id="rs" :style="{ transform: `translate(${x}px, ${y}px)` }"></div>
-                <div id="biaozhun"></div>
+                <div id="rs" :style="{ transform: `translate(${x}px, ${y}px)` }" :class="{ disShubiao: isPoint }"></div>
+                <div id="biaozhun" :class="{ disShubiao: isPoint }"></div>
             </div>
         </div>
     </div>
@@ -525,8 +548,10 @@ function drag(obj) {
         }
 
         .leftBottom {
-            height: 20%;
+            height: 10%;
+
         }
+
     }
 
     .middle {
@@ -551,6 +576,10 @@ function drag(obj) {
     width: 100%;
     height: 100%;
     background-color: rgb(226, 226, 226);
+}
+
+.disShubiao {
+    cursor: none;
 }
 
 #rs {

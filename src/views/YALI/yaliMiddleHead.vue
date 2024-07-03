@@ -36,6 +36,19 @@ const returnLast = () => {
             </el-breadcrumb-item>
         </el-breadcrumb>
         <div class="head_left">
+            <el-popover placement="bottom" :width="1000" trigger="click">
+                <template #reference>
+                    <el-button circle>
+                        <mySvg name="wenhao" size="20px" color="black"></mySvg>
+                    </el-button>
+                </template>
+                <myCarousel>
+                    <template #title>
+                        <h2 style="text-align: center; background-color: gray;color:white;margin-bottom: 20px;">
+                            excel表格文件格式规定（区分大小写）</h2>
+                    </template>
+                </myCarousel>
+            </el-popover>
             <el-button type="primary" circle>
                 <mySvg name="refresh" size="20px" color="white" @click="refresh"></mySvg>
             </el-button>

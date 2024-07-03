@@ -1,6 +1,6 @@
 // 导入excelfile和一个tableData，excel会编程tableData的数据
 import XLSX from 'xlsx'
-const getxlsx1 = async (file) => {
+const getxlsx2 = async (file) => {
     const res = await file2XLSX(file)
     return res[0].sheet
 }
@@ -34,4 +34,4 @@ const file2XLSX = (file) => {
         }
     })
 }
-export default getxlsx1
+export default getxlsx2
