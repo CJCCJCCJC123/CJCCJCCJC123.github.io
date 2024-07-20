@@ -16,11 +16,11 @@ const store = useStore()
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid black;
+    overflow: hidden;
 
     .cushayanItem {
         flex: 1;
         height: 100%;
-
     }
 
     .active::after {

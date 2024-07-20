@@ -4,7 +4,7 @@ defineProps(["thickness"]);
 const store = useStore()
 </script>
 <template>
-    <div class="cushayan" v-for="ele in parseInt(thickness / (store.sizeval)) * 2 " :key="ele">
+    <div class="cushayan" v-for="ele in parseInt(thickness / (store.sizeval)) * 2 + 2 " :key="ele">
 
     </div>
 </template>
