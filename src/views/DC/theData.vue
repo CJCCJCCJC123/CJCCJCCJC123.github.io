@@ -12,6 +12,7 @@ const adddc = () => {
         store.falg = false
         store.add()
     } else {
+        console.log(1)
         refs[refs.length - 1].validate((valid) => {
             if (valid) {
                 store.add()
@@ -50,6 +51,10 @@ const adddc = () => {
                                 <el-option label="细砂岩" value="细砂岩"></el-option>
                                 <el-option label="炭质泥岩" value="炭质泥岩"></el-option>
                                 <el-option label="煤层" value="煤层"></el-option>
+                                <el-option label="灰岩" value="灰岩"></el-option>
+                                <el-option label="粘土" value="粘土"></el-option>
+                                <el-option label="页岩" value="页岩"></el-option>
+                                <el-option label="白云岩" value="白云岩"></el-option>
                             </el-select>
                         </el-form-item>
                         <el-form-item label="厚度（米）" style="width: 50%" prop="thickness">

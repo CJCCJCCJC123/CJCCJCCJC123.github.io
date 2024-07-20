@@ -117,7 +117,9 @@ const selectSize = (row) => {
                             <td style="width: 24%;">
                                 <DC :DCitem="ele"></DC>
                             </td>
-                            <td v-show="isDesc" style="width: 40%;">{{ ele.description }}</td>
+                            <td v-show="isDesc" style="width: 40%;word-wrap:break-word;word-break:break-all;">{{
+                                ele.description }}
+                            </td>
                         </tr>
                     </tbody>
                 </table>

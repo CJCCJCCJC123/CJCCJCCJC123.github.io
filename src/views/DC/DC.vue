@@ -11,6 +11,10 @@ import mei from "@/views/DC/DCitem/meiCeng.vue";
 import shazhiniyan from "@/views/DC/DCitem/nizhishaYan.vue";
 import cushayan from "@/views/DC/DCitem/cushaYan.vue";
 import zhongshayan from "@/views/DC/DCitem/zhongshaYan.vue";
+import huiyan from "@/views/DC/DCitem/huiYan.vue"
+import niantu from "@/views/DC/DCitem/nianTu.vue"
+import yeyan from "@/views/DC/DCitem/yeYan.vue"
+import baiyunyan from "@/views/DC/DCitem/baiyunYan.vue"
 const props = defineProps(["DCitem"]);
 const store = useStore()
 const CDdata = ref({
@@ -24,7 +28,11 @@ const CDdata = ref({
     isfenshayan: false,
     isxishayan: false,
     istanzhiniyan: false,
-    ismei: false
+    ismei: false,
+    ishuiyan: false,
+    isniantu: false,
+    isyeyan: false,
+    isbaiyunyan: false
 })
 const filterFn = () => {
     CDdata.value.ishuangtu = false;
@@ -37,6 +45,10 @@ const filterFn = () => {
     CDdata.value.isxishayan = false;
     CDdata.value.istanzhiniyan = false;
     CDdata.value.ismei = false;
+    CDdata.value.ishuiyan = false;
+    CDdata.value.isniantu = false;
+    CDdata.value.isyeyan = false;
+    CDdata.value.isbaiyunyan = false
     if (store.formList[CDdata.value.id - 1].name === "黄土") {
         CDdata.value.ishuangtu = true;
         return;
@@ -67,6 +79,14 @@ const filterFn = () => {
     } else if (store.formList[CDdata.value.id - 1].name === "煤层") {
         CDdata.value.ismei = true;
         return;
+    } else if (store.formList[CDdata.value.id - 1].name === "灰岩") {
+        CDdata.value.ishuiyan = true
+    } else if (store.formList[CDdata.value.id - 1].name === "粘土") {
+        CDdata.value.isniantu = true
+    } else if (store.formList[CDdata.value.id - 1].name === "页岩") {
+        CDdata.value.isyeyan = true
+    } else if (store.formList[CDdata.value.id - 1].name === "白云岩") {
+        CDdata.value.isbaiyunyan = true
     }
 }
 onMounted(() => {
@@ -107,6 +127,18 @@ watch(() => store.formList[CDdata.value.id - 1].name, () => {
         </div>
         <div v-show="CDdata.ismei">
             <mei :thickness="props.DCitem.thickness"></mei>
+        </div>
+        <div v-show="CDdata.ishuiyan">
+            <huiyan :thickness="props.DCitem.thickness"></huiyan>
+        </div>
+        <div v-show="CDdata.isniantu">
+            <niantu :thickness="props.DCitem.thickness"></niantu>
+        </div>
+        <div v-show="CDdata.isyeyan">
+            <yeyan :thickness="props.DCitem.thickness"></yeyan>
+        </div>
+        <div v-show="CDdata.isbaiyunyan">
+            <baiyunyan :thickness="props.DCitem.thickness"></baiyunyan>
         </div>
     </div>
 </template>

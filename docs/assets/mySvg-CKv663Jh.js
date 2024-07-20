@@ -1,1 +1,0 @@
-import{o as t,g as l,a as n,n as a}from"./index-nyadhyy-.js";const i=["xlink:href","fill"],c={__name:"mySvg",props:{name:{type:String,default:""},size:{type:String,default:""},color:{type:String,default:""}},setup(e){return(o,r)=>(t(),l("svg",{style:a(`width:${e.size};height:${e.size}`)},[n("use",{"xlink:href":`#icon-${e.name}`,fill:e.color},null,8,i)],4))}};export{c as _};
